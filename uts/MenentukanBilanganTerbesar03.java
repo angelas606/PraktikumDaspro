@@ -15,7 +15,7 @@ public class MenentukanBilanganTerbesar03 {
         int angka3 = sc.nextInt();
         System.out.println();
 
-        //Menentukan nilai anbka yang paling besar 
+        //Menentukan nilai angka yang paling besar 
         int max = angka1;
         if (angka2 > max) {
             max = angka2;
