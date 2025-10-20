@@ -11,7 +11,7 @@ public class CM1_03 {
         System.out.print("Nama : ");
         String nama = sc.nextLine();
         System.out.print("NIM  : ");
-        String nim = sc.nextLine();
+        long nim = sc.nextLong();
         System.out.println();
 
         //Input nilai MK 1 Algoritma dan Pemrograman
