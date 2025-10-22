@@ -81,7 +81,7 @@ public class CM1_03 {
 
         //Status kelulusan semester 
         String statusSemester;
-        if (status1.equals("LULUS") && status1.equals("LULUS")) {
+        if (status1.equals("LULUS") && status2.equals("LULUS")) {
             if (rata >= 70) {
                 statusSemester = "LULUS (Rata-rata >= 70)";
             } else {
