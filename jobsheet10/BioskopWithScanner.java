@@ -29,10 +29,15 @@ public class BioskopWithScanner {
                     System.out.print("Masukkan kolom: ");
                     kolom = sc.nextInt();
                     sc.nextLine();
-                    
-                    penonton[baris-1][kolom-1] = nama;
-                    System.out.println("Data penonton berhasil disimpan.");
-                    
+
+                    if (baris < 1 || baris > 4 || kolom < 1 || kolom > 2) {
+                        System.out.println("Nomor baris atau kolom tidak valid!");
+                    } else if (penonton[baris-1][kolom-1] != null) {
+                        System.out.println("Kursi sudah ditempati!");
+                    } else {
+                        penonton[baris-1][kolom-1] = nama;
+                        System.out.println("Data penonton berhasil disimpan.");
+                    }
                     break;
                 
                 case 2:
