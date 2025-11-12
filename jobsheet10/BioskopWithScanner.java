@@ -7,7 +7,7 @@ public class BioskopWithScanner {
         Scanner sc = new Scanner(System.in);
     
         int baris, kolom;
-        String nama, next;
+        String nama;
         String[][] penonton = new String[4][2];
         int menu;
 
