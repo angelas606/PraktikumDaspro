@@ -3,11 +3,8 @@ package jobsheet12;
 import java.util.Scanner;
 
 public class RekapPenjualanCafe03 {
-    static int menu = 5;
-    static int hari = 7;
-    static String[] daftarMenu = {"Kopi", "Teh", "Es Kelapa Muda", "Roti Bakar", "Gorengan"};
 
-    static void inputPenjualan(int[][] penjualan, Scanner sc) {
+    static void inputPenjualan(int[][] penjualan, Scanner sc, String[] daftarMenu, int menu, int hari) {
         System.out.println("==== INPUT DATA PENJUALAN ====");
         for (int i = 0; i < hari; i++) {
             System.out.println("Hari ke-" + (i + 1) + " : ");
@@ -18,7 +15,7 @@ public class RekapPenjualanCafe03 {
         }
     }
 
-    static void tampilData(int[][] penjualan) {
+    static void tampilData(int[][] penjualan, String[] daftarMenu, int menu, int hari) {
         System.out.println();
         System.out.println("=============== REKAP PENJUALAN ===============");
         System.out.printf("%-15s", "Menu");
@@ -39,7 +36,7 @@ public class RekapPenjualanCafe03 {
         }
     }
 
-    static void menuTertinggi (int[][] penjualan) {
+    static void menuTertinggi (int[][] penjualan, String[] daftarMenu, int menu, int hari) {
         int best = 0;
         int bestTotal = -1;
         for (int j = 0; j < menu; j++) {
@@ -55,7 +52,7 @@ public class RekapPenjualanCafe03 {
         System.out.println("Menu dengan penjualan tertinggi: " + daftarMenu[best] + " -> " + bestTotal);
     }
 
-    static void rataPenjualan (int[][] penjualan) {
+    static void rataPenjualan (int[][] penjualan, String[] daftarMenu, int menu, int hari) {
         System.out.println("Rata-rata per menu:");
         for (int j = 0; j < menu; j++) {
             int total = 0;
@@ -69,11 +66,23 @@ public class RekapPenjualanCafe03 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        System.out.print("Masukkan jumlah menu: ");
+        int menu = sc.nextInt();
+        System.out.print("Masukkan jumlah hari: ");
+        int hari = sc.nextInt();
+        sc.nextLine(); 
+
+        String[] daftarMenu = new String[menu];
+        for (int j = 0; j < menu; j++) {
+            System.out.print("Nama menu ke-" + (j + 1) + ": ");
+            daftarMenu[j] = sc.nextLine();
+        }
+
         int[][] penjualan = new int[menu][hari];
 
-        inputPenjualan(penjualan, sc);
-        tampilData(penjualan);
-        menuTertinggi(penjualan);
-        rataPenjualan(penjualan);
+        inputPenjualan(penjualan, sc, daftarMenu, menu, hari);
+        tampilData(penjualan, daftarMenu, menu, hari);
+        menuTertinggi(penjualan, daftarMenu, menu, hari);
+        rataPenjualan(penjualan, daftarMenu, menu, hari);
     }
 }
