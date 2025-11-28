@@ -93,7 +93,6 @@ public class Kafe03 {
             System.out.println("Ditambahkan: " + banyakItem + " x " + daftarMenu[pilihanMenu - 1]);
         }
 
-        // Hitung total per menu dan total keseluruhan
         int totalKeseluruhan = 0;
         System.out.println();
         System.out.println("Rincian pesanan:");
