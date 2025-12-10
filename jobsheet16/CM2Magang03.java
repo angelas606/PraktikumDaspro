@@ -3,64 +3,59 @@ package jobsheet16;
 import java.util.Scanner;
 
 public class CM2Magang03 {
-    static class Pendaftar {
-        String nama;
-        String nim;
-        String prodi;
-        String perusahaan;
-        int semester;
-        String status;
-
-        Pendaftar(String nama, String nim, String prodi, String perusahaan, int semester, String status) {
-            this.nama = nama;
-            this.nim = nim;
-            this.prodi = prodi;
-            this.perusahaan = perusahaan;
-            this.semester = semester;
-            this.status = status;
-        }
-    }
-
-    static Pendaftar[] daftar = new Pendaftar[200];
+    static String[] nama = new String[200];
+    static String[] nim = new String[200];
+    static String[] prodi = new String[200];
+    static String[] perusahaan = new String[200];
+    static int[] semester = new int[200];
+    static String[] status = new String[200];
     static int jumlah = 0;
 
+    // Fungsi unuk menambah data pendaftar magang
     static void tambahData(Scanner sc) {
-        sc.nextLine(); // consume leftover newline from nextInt()
+        sc.nextLine(); 
         System.out.print("Nama Mahasiswa: ");
-        String nama = sc.nextLine();
+        String inputNama = sc.nextLine();
         System.out.print("NIM: ");
-        String nim = sc.nextLine();
+        String inputNim = sc.nextLine();
         System.out.print("Program Studi: ");
-        String prodi = sc.nextLine();
+        String inputProdi = sc.nextLine();
         System.out.print("Perusahaan Tujuan Magang: ");
-        String perusahaan = sc.nextLine();
+        String inputPerusahaan = sc.nextLine();
         
-        int semester;
+        int inputSemester;
         while (true) {
             System.out.print("Semester (6 atau 7): ");
-            semester = sc.nextInt();
+            inputSemester = sc.nextInt();
             sc.nextLine(); 
-            if (semester == 6 || semester == 7) {
+            if (inputSemester == 6 || inputSemester == 7) {
                 break;
             } else {
                 System.out.println("Semester harus 6 atau 7. Silakan coba lagi.");
             }
         }
 
-        String status;
+        String inputStatus;
         while (true) {
             System.out.print("Status Pendaftaran Magang (Diterima/Menunggu/Ditolak): ");
-            status = sc.nextLine().trim();
-            if (status.equalsIgnoreCase("Diterima") || status.equalsIgnoreCase("Menunggu") || status.equalsIgnoreCase("Ditolak")) {
+            inputStatus = sc.nextLine().trim();
+            if (inputStatus.equalsIgnoreCase("Diterima") || inputStatus.equalsIgnoreCase("Menunggu") || inputStatus.equalsIgnoreCase("Ditolak")) {
                 break;
             } else {
                 System.out.println("Status tidak valid. Silakan coba lagi.");
             }
         }
-        daftar[jumlah++] = new Pendaftar(nama, nim, prodi, perusahaan, semester, status);
+        nama[jumlah] = inputNama;
+        nim[jumlah] = inputNim;
+        prodi[jumlah] = inputProdi;
+        perusahaan[jumlah] = inputPerusahaan;
+        semester[jumlah] = inputSemester;
+        status[jumlah] = inputStatus;
+        jumlah++;
         System.out.println("Data pendaftar berhasil ditambahkan. Total pendaftar: " + jumlah);
     }
-
+    
+    // Fungsi untuk menampilkan semua data pendaftar magang
     static void tampilkanData() {
         System.out.println("=== Daftar Pendaftar Magang ===");
         if (jumlah == 0) {
@@ -71,11 +66,11 @@ public class CM2Magang03 {
         System.out.printf("%-3s %-20s %-12s %-18s %-10s %-10s%n", "No", "Nama", "NIM", "Program Studi", "Semester", "Status");
         System.out.println("--------------------------------------------------------------------------------");
         for (int i = 0; i < jumlah; i++) {
-            Pendaftar p = daftar[i];
-            System.out.printf("%-3d %-20s %-12s %-18s %-10d %-10s%n", i + 1, p.nama, p.nim, p.prodi, p.semester, p.status);
+            System.out.printf("%-3d %-20s %-12s %-18s %-10d %-10s%n", i + 1, nama[i], nim[i], prodi[i], semester[i], status[i]);
         }
     }
 
+    // Fungsi untuk mencari pendaftar berdasarkan program studi
     static void cariProdi(Scanner sc) {
         sc.nextLine();
         System.out.println("--- Cari Pendaftar berdasarkan Program Studi ---");
@@ -93,31 +88,34 @@ public class CM2Magang03 {
         
         int total = 1;
         for (int i = 0; i < jumlah; i++) {
-            Pendaftar p = daftar[i];
-            if (p.prodi.equalsIgnoreCase(cariProdi)) {
-                System.out.printf("%-3d %-20s %-12s %-18s %-10d %-10s%n", total++, p.nama, p.nim, p.prodi, p.semester, p.status);
+            if (prodi[i].equalsIgnoreCase(cariProdi)) {
+                System.out.printf("%-3d %-20s %-12s %-18s %-10d %-10s%n", total++, nama[i], nim[i], prodi[i], semester[i], status[i]);
             }
         }
         if (total == 1) System.out.println("Tidak ada pendaftar untuk program studi ini.");
     }
 
+    // Fungsi untuk menghitung jumlah pendaftar untuk setiap status
     static void hitungStatus() {
         System.out.println("--- Jumlah Pendaftar per Status ---");
+        // Apabila belum ada pendaftar 
         if (jumlah == 0) {
             System.out.println("Belum ada pendaftar.");
             return;
         }
-        int diterima = 0, menunggu = 0, ditolak = 0;
+
+        int diterima = 0, menunggu = 0, ditolak = 0; 
         for (int i = 0; i < jumlah; i++) {
-            Pendaftar p = daftar[i];
-            if (p.status.equalsIgnoreCase("Diterima")) diterima++;
-            else if (p.status.equalsIgnoreCase("Menunggu")) menunggu++;
-            else if (p.status.equalsIgnoreCase("Ditolak")) ditolak++;
+            if (status[i].equalsIgnoreCase("Diterima")) diterima++;
+            else if (status[i].equalsIgnoreCase("Menunggu")) menunggu++;
+            else if (status[i].equalsIgnoreCase("Ditolak")) ditolak++;
         }
         System.out.println("Diterima: " + diterima);
         System.out.println("Menunggu: " + menunggu);
         System.out.println("Ditolak : " + ditolak);
     }
+
+    // Fungsi main 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
