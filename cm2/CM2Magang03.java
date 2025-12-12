@@ -1,4 +1,4 @@
-package jobsheet16;
+package cm2;
 
 import java.util.Scanner;
 
