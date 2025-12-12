@@ -86,13 +86,13 @@ public class CM2Magang03 {
         System.out.printf("%-3s %-20s %-12s %-18s %-10s %-10s%n", "No", "Nama", "NIM", "Program Studi", "Semester", "Status");
         System.out.println("--------------------------------------------------------------------------------");
         
-        int total = 1;
+        int ditemukan = 1;
         for (int i = 0; i < jumlah; i++) {
             if (prodi[i].equalsIgnoreCase(cariProdi)) {
-                System.out.printf("%-3d %-20s %-12s %-18s %-10d %-10s%n", total++, nama[i], nim[i], prodi[i], semester[i], status[i]);
+                System.out.printf("%-3d %-20s %-12s %-18s %-10d %-10s%n", ditemukan++, nama[i], nim[i], prodi[i], semester[i], status[i]);
             }
         }
-        if (total == 1) System.out.println("Tidak ada pendaftar untuk program studi ini.");
+        if (ditemukan == 1) System.out.println("Tidak ada pendaftar untuk program studi ini.");
     }
 
     // Fungsi untuk menghitung jumlah pendaftar untuk setiap status
